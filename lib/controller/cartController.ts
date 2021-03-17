@@ -17,8 +17,7 @@ class CartController {
   }
 
   public clearCart(req: Request, res: Response): any {
-    const cartId : string = req.params.id.toString();
-    cartService.clearCart(cartId, (err: any, response:object) => {
+    cartService.clearCart((err: any, response:object) => {
       if (err) {
         res.status(500).json(responseJson('err', err))
       } else {

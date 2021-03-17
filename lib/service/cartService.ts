@@ -71,15 +71,15 @@ class cartService {
     })
   }
 
-  public clearCart(itemId: string, callback: any): any {
-    if (!itemId || itemId == null) {
-      return callback('id must be required', null)
-    }
-    cartDao.updateCart(itemId, { "items": [] }, (err: any, res: object) => {
-      if (err) {
-        return callback(err, null)
-      }
-      callback(null, res)
+  public clearCart(callback: any): any {
+    cartDao.getAllCart((err: any, res: any) => {
+      if (err) return callback(err, null)
+      cartDao.updateCart(res[0]._id, { "items": [] }, (err: any, res: object) => {
+        if (err) {
+          return callback(err, null)
+        }
+        callback(null, res)
+      })
     })
   }
 

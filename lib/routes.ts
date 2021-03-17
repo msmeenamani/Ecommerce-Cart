@@ -19,7 +19,7 @@ class routes {
       app.route('/ecom/item/:id').delete(this.itemController.deleteItem)
 
       app.route('/ecom/cart').put(this.cartController.updateCart)
-      app.route('/ecom/cart/:id').delete(this.cartController.clearCart)
+      app.route('/ecom/cart').delete(this.cartController.clearCart)
       app.route('/ecom/checkout').get(this.cartController.getTotal)
 
       app.route('/ecom/promotion').post(this.promotionController.createPromotion)
