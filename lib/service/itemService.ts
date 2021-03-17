@@ -1,7 +1,7 @@
 import ItemDao from '../dao/itemDao'
 const itemDao = new ItemDao();
 
-class UserService {
+class ItemService {
 
   public createItem(itemData: any, callback: any): any {
 
@@ -68,6 +68,7 @@ class UserService {
     })
   }
 
+
 }
 
-export default UserService
+export default ItemService

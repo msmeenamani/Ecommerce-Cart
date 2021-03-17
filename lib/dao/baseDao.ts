@@ -21,7 +21,7 @@ class BaseDao {
   } 
 
   public async getData(model, id, callback): Promise<any> {
-    await model.findById(id).exec().then((result) => {
+    await model.findById(id).and({deleted: false}).exec().then((result) => {
       return callback(null, result)
     }).catch(e => callback(e, null))
   }
@@ -33,12 +33,6 @@ class BaseDao {
     }).catch(e => callback(e, null))
   }
 
-  public async deleteUser(model, id, callback): Promise<any> {
-    await model.findByIdAndRemove(id).exec();
-    callback({"data": "deleted successful"})
-  }
-
-  
 }
 
 export default BaseDao

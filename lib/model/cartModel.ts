@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 let ItemSchema = new Schema(
   {
-    productId: {
+    itemId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Product",
     },
@@ -20,22 +20,12 @@ let ItemSchema = new Schema(
       type: Number,
       required: true,
     },
-  },
-  {
-    timestamps: true,
   }
 );
 
 const CartSchema = new Schema(
   {
-    items: [ItemSchema],
-    subTotal: {
-      default: 0,
-      type: Number,
-    },
-  },
-  {
-    timestamps: true,
+    items: [ItemSchema]
   }
 );
 export const CartModel = mongoose.model('cart', CartSchema)

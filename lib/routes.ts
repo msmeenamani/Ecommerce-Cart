@@ -1,10 +1,12 @@
 import * as express from 'express'
-// import ProductController from './controller/productController'
+import CartController from './controller/cartController'
 import ItemController from './controller/itemController'
 
 class routes {
-  // public productController: ProductController = new ProductController();
+  public cartController: CartController = new CartController();
   public itemController: ItemController = new ItemController();
+
+  // constructor(public cartController: CartController){}
 
   public routes(app: express.Application) {
       
@@ -13,6 +15,10 @@ class routes {
       app.route('/ecom/item/:id').get(this.itemController.getItem)
       app.route('/ecom/item/:id').put(this.itemController.updateItem)
       app.route('/ecom/item/:id').delete(this.itemController.deleteItem)
+
+      app.route('/ecom/cart').put(this.cartController.updateCart)
+      app.route('/ecom/cart/:id').delete(this.cartController.clearCart)
+      
       
   }
 
