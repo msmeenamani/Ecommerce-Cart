@@ -14,7 +14,7 @@ const ResponseJson = (identifier, data) => {
     let successData: object = {
       success: true,
       statusCode: 200,
-      data: data[0] == null ? [] : data,
+      data:Array.isArray(data[0]) ? data[0] == null ? [] : data : data,
       errorMessage: []
     }
     response = successData;

@@ -3,7 +3,7 @@ import * as bodyParser from 'body-parser'
 import Routes from './routes'
 import ConnectDB from './config/db'
 
-var PORT = "4000"
+var PORT = "3001"
 class App {
 
     public app: express.Application;

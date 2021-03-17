@@ -15,11 +15,7 @@ let ItemSchema = new Schema(
     price: {
       type: Number,
       required: true,
-    },
-    total: {
-      type: Number,
-      required: true,
-    },
+    }
   }
 );
 

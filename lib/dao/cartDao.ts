@@ -15,14 +15,6 @@ class CartDao extends BaseDao {
   }
 
   public async getAllCart(callback: any): Promise<any> {
-
-    // baseDao.getAllData(CartModel, (err: any, res: object) => {
-    //   if (err) {
-    //     return callback(err, null)
-    //   }
-    //   callback(null, res)
-    // })
-
     await CartModel.find().exec().then((result) => {
       return callback(null, result)
     }).catch(e => callback(e, null))
