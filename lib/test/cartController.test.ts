@@ -22,7 +22,7 @@ describe("Test e-commerce", () => {
     done()
   })
 
-  it('checkout item', async done => {
+  it('clear cart', async done => {
     const res = await request.delete('/ecom/cart')
     expect(res.body.statusCode).toBe(200)
     done()

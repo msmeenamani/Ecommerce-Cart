@@ -125,7 +125,7 @@ class cartService {
               data.discount = data.discount + e.discount
             })
             let finalData = data
-            promotionDao.getPromotionByName("basketTotal", (err: any, response: any) => {
+            promotionDao.getPromotionByName("Total", (err: any, response: any) => {
               if (err) return callback(err, null)
               if (response.length > 0) {
                 finalData = this.applyTotalDiscount(2, data, response[0])
@@ -148,7 +148,7 @@ class cartService {
       if (promotion) {
         let { discountType, discountDetails } = promotion;
         let { multiples, discountPrice } = discountDetails;
-        q = Math.round(quantity/multiples);
+        q = Math.floor(quantity/multiples);
         r = quantity%multiples;
         tot = (q * discountPrice) + (r * price)
         subTot = quantity * price
@@ -170,14 +170,17 @@ class cartService {
   }
 
   private applyTotalDiscount(identifier: Number, data: any, promotion: any) {
+    let oldTotal = data.total
     let { total, subTotal, discount } = data;
     if (identifier == 2) {
       let { discountDetails } = promotion;
       let { minOrderValue, discountPrice } = discountDetails;
       if (total > minOrderValue) {
         total = total - discountPrice;
+        data.subTotal = subTotal
+        data.discount = discount + (oldTotal - total);
       }
-
+      data.total = total
     }
     return data
   }

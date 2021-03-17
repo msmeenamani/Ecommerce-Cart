@@ -24,8 +24,8 @@ class App {
 
 }
 
-new App().app.listen(PORT, ()=>{
-    console.log("app listening on port"+ PORT)
-})
+// new App().app.listen(PORT, ()=>{
+//     console.log("app listening on port"+ PORT)
+// })
 
-// export default new App().app;
+export default new App().app;
