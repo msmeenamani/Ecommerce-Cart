@@ -57,14 +57,11 @@ class ItemService {
     if (!itemId || itemId == null) {
       return callback('id must be required', null)
     }
-    let itemData = {
-      deleted: true
-    }
-    itemDao.updateItem(itemId, itemData, (err: any, res: object) => {
+    itemDao.deleteItem(itemId, (err: any, res: object) => {
       if (err) {
         return callback(err, null)
       }
-      callback(null, res)
+      callback(null, {deleted: "successful"})
     })
   }
 

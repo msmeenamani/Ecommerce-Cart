@@ -60,17 +60,6 @@ class PromotionController {
     })
   }
 
-  public getTotal(req: Request, res: Response): any {
-    const itemId : string = req.params.id.toString();
-    promotionService.getTotal(itemId, (err: any, response:object) => {
-      if (err) {
-        res.status(500).json(responseJson('err', err))
-      } else {
-        res.status(200).json(responseJson('suc', [response])) 
-      }
-    })
-  }
-
 }
 
 export default PromotionController

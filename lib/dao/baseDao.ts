@@ -15,13 +15,13 @@ class BaseDao {
   }
 
   public async getAllData(model, callback): Promise<any> {
-    await model.find({deleted: false}).exec().then((result) => {
+    await model.find().exec().then((result) => {
       return callback(null, result)
     }).catch(e => callback(e, null))
   } 
 
   public async getData(model, id, callback): Promise<any> {
-    await model.findById(id).and({deleted: false}).exec().then((result) => {
+    await model.findById(id).exec().then((result) => {
       return callback(null, result)
     }).catch(e => callback(e, null))
   }
@@ -29,6 +29,12 @@ class BaseDao {
   public async updateData(model, id, updatedData, callback): Promise<any> {
     await model.findByIdAndUpdate(id, updatedData).exec();
     await model.findById(id).exec().then((result) => {
+      return callback(null, result)
+    }).catch(e => callback(e, null))
+  }
+
+  public async deleteData(model, id, callback): Promise<any> {
+    await model.findByIdAndRemove(id).exec().then((result) => {
       return callback(null, result)
     }).catch(e => callback(e, null))
   }

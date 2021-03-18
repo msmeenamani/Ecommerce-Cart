@@ -34,13 +34,22 @@ class ItemDao extends BaseDao {
   }
 
   public async getDataByName(name: string, callback: any): Promise<any> {
-    await ItemModel.find({'name': name, 'deleted': false }).exec().then((result) => {
+    await ItemModel.find({'name': name}).exec().then((result) => {
       return callback(null, result)
     }).catch(e => callback(e, null))
   }
 
   public updateItem(itemId:string , itemData:any, callback: any): any {
     this.updateData(ItemModel, itemId, itemData, (err: any, res: object) => {
+      if (err) {
+        return callback(err, null)
+      }
+      callback(null, res)
+    })
+  }
+
+  public deleteItem(itemId:string , callback: any): any {
+    this.deleteData(ItemModel, itemId, (err: any, res: object) => {
       if (err) {
         return callback(err, null)
       }

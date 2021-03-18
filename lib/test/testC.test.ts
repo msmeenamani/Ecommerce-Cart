@@ -35,7 +35,7 @@ describe("Test e-commerce Test C", () => {
     console.log("items --->", itemIds)
     const res = await request.put('/ecom/cart').send({
       "items": [
-        {"itemId": itemIds[0], "quantity": 3 },
+        {"itemId": itemIds[0], "quantity": 3},
         {"itemId": itemIds[1], "quantity": 2 },
         {"itemId": itemIds[2], "quantity": 1 },
         {"itemId": itemIds[3], "quantity": 1 },

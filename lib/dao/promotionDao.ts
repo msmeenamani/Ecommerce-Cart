@@ -34,19 +34,28 @@ class PromotionDao {
   }
 
   public async getPromotionByItem(userId:string, callback: any): Promise<any> {
-    await PromotionModel.find({'itemId': userId, deleted: false}).exec().then((result) => {
+    await PromotionModel.find({'itemId': userId}).exec().then((result) => {
       return callback(null, result)
     }).catch(e => callback(e, null))
   }
 
   public async getPromotionByName(name:string, callback: any): Promise<any> {
-    await PromotionModel.find({'itemName': name, deleted: false}).exec().then((result) => {
+    await PromotionModel.find({'itemName': name}).exec().then((result) => {
       return callback(null, result)
     }).catch(e => callback(e, null))
   }
 
   public updatePromotion(itemId:string , itemData:any, callback: any): any {
     baseDao.updateData(PromotionModel, itemId, itemData, (err: any, res: object) => {
+      if (err) {
+        return callback(err, null)
+      }
+      callback(null, res)
+    })
+  }
+
+  public deletePromotion(itemId:string , callback: any): any {
+    baseDao.deleteData(PromotionModel, itemId, (err: any, res: object) => {
       if (err) {
         return callback(err, null)
       }

@@ -2,6 +2,7 @@ import * as express from 'express'
 import * as bodyParser from 'body-parser'
 import Routes from './routes'
 import ConnectDB from './config/db'
+import cors = require('cors')
 
 var PORT = "3001"
 class App {
@@ -20,6 +21,7 @@ class App {
     private config(): void{
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
+        this.app.use(cors({ credentials: true,origins : true}))
     }
 
 }

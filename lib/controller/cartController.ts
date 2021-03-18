@@ -16,6 +16,16 @@ class CartController {
     })
   }
 
+  public getAllCart(req: Request, res: Response): any {
+    cartService.getAllCart((err: any, response: object) => {
+      if (err) {
+        res.status(500).json(responseJson('err', err))
+      } else {
+        res.status(200).json(responseJson('suc', response)) 
+      }
+    })
+  }
+
   public clearCart(req: Request, res: Response): any {
     cartService.clearCart((err: any, response:object) => {
       if (err) {

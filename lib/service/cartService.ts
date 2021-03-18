@@ -25,7 +25,10 @@ class cartService {
                 quantity: e.quantity,
                 price: res.price
               }
-              resolve(individualItem)
+              itemDao.updateItem(e.itemId, { quantity: e.quantity }, (err:any, res:any) => {
+                if (err) return callback(err, null)
+                resolve(individualItem)
+              })
             })
           } 
         }))

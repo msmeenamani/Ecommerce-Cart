@@ -67,28 +67,11 @@ class PromotionService {
     if (!itemId || itemId == null) {
       return callback('id must be required', null)
     }
-    let itemData = {
-      deleted: true
-    }
-    promotionDao.updatePromotion(itemId, itemData, (err: any, res: object) => {
+    promotionDao.deletePromotion(itemId, (err: any, res: object) => {
       if (err) {
         return callback(err, null)
       }
-      callback(null, res)
-    })
-  }
-
-  public getTotal(itemId: string, callback: any): any {
-    if (!itemId || itemId == null) {
-      return callback('id must be required', null)
-    }
-    promotionDao.getPromotion(itemId, (err: any, res: object) => {
-      if (err) {
-        return callback(err, null)
-      } else {
-        console.log("res.")
-      }
-      
+      callback(null, {deleted: "successful"})
     })
   }
 
