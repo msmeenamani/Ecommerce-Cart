@@ -10,7 +10,7 @@ var itemArray = [
 
 var itemIds = [];
 
-describe("Test e-commerce", () => {
+describe("Test e-commerce Test A", () => {
 
   it('post the item data', async done => {
     await request.post('/ecom/item').send(itemArray[0]).then(async e => {
@@ -31,9 +31,9 @@ describe("Test e-commerce", () => {
     console.log("items --->", itemIds)
     const res = await request.put('/ecom/cart').send({
       "items": [
-        {"itemId": itemIds[0], "quantity": 3},
-        { "itemId": itemIds[1], "quantity": 2 },
-        {"itemId": itemIds[2], "quantity": 5 },
+        {"itemId": itemIds[0], "quantity": 1},
+        { "itemId": itemIds[1], "quantity": 1 },
+        {"itemId": itemIds[2], "quantity": 1 },
       ]
     })
     expect(res.body.statusCode).toBe(200)
@@ -83,7 +83,7 @@ describe("Test e-commerce", () => {
     const res = await request.get('/ecom/checkout')
     console.log("test --->", res.body.data)
     expect(res.body.statusCode).toBe(200)
-    expect(res.body.data.total).toBe(340)
+    expect(res.body.data.total).toBe(100)
     done()
   })
 
